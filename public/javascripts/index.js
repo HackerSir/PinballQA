@@ -10,8 +10,29 @@ $.fn.extend({
     }
 });
 
+var $showingContainer;
+var $welcome_container;
+var $question_container;
+var $correct_container;
+var $wrong_container;
+
+var $question_Q;
+var $question_text;
+var $question_buttons;
+
 $(function () {
     var $connect_status = $('#connect_status');
+    $welcome_container = $('#welcome');
+    $question_container = $('#question');
+    $correct_container = $('#correct');
+    $wrong_container = $('#wrong');
+    $showingContainer = $welcome_container;
+
+    $question_Q = $('#question_Q');
+    $question_text = $('#question_text');
+    $question_buttons = [
+        $('#question_button_0'), $('#question_button_1')
+    ];
 
     socket = io("//" + window.location.hostname + (location.port == "" ? "" : ":" + location.port));
 
@@ -23,7 +44,9 @@ $(function () {
         socket.emit('add-channel', 'pinball');
 
         socket.on('fire', function (data) {
-            showQuestion();
+            if ($showingContainer == $welcome_container) {
+                showQuestion();
+            }
         })
     });
 
@@ -41,20 +64,8 @@ $(function () {
         $connect_status.html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;連線中');
     });
 
-    $showingContainer = $('#welcome');
-    $question_Q = $('#question_Q');
-    $question_text = $('#question_text');
-    $question_buttons = [
-        $('#question_button_0'), $('#question_button_1')
-    ];
-
     $('#pinball').click(showQuestion);
 });
-
-var $showingContainer;
-var $question_Q;
-var $question_text;
-var $question_buttons;
 
 function showQuestion() {
     // 更新內容
@@ -64,24 +75,32 @@ function showQuestion() {
     $question_text.text(question["text"]);
     for (var i = 0; i < 2; i++) {
         $question_buttons[i].text(question["options"][i]);
+        if (i == question["ans"]) {
+            $question_buttons[i].click(showCorrect);
+        }
+        else {
+            $question_buttons[i].click(showWrong);
+        }
     }
 
     // switch
-    switchContainer('question');
+    switchContainer($question_container);
 }
 
 function showCorrect() {
-    
+    switchContainer($correct_container);
 }
 
 function showWrong() {
-    
+    switchContainer($wrong_container);
 }
 
-function switchContainer(id) {
+function switchContainer($container) {
     $showingContainer.animateCss('bounceOut', function () {
         $showingContainer.hide();
-        $('#' + id).show().animateCss('bounceIn');
+
+        $showingContainer = $container;
+        $showingContainer.show().animateCss('bounceIn');
     });
 }
 
