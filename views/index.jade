@@ -28,11 +28,13 @@ block content
         div(class="card")
             div(class="card-block")
                 h2(class="card-title text-success text-xs-center") 恭喜你答對了去領糖果吧～～
+                    div(id="correct_return" class="btn btn-outline-primary") 返回
                 img(src='/images/correct.gif' class='img-rounded m-x-auto d-block' style='height: 50vh')
     div(id='wrong' class='container' style="display: none;")
         div(class="card")
             div(class="card-block")
                 h2(class="card-title text-danger text-xs-center") 雖然錯了但還是去領個糖果吧XDDD
+                    div(id="wrong_return" class="btn btn-outline-primary") 返回
                 img(src='/images/wrong.gif' class='img-rounded m-x-auto d-block' style='height: 50vh')
 
 block javascript

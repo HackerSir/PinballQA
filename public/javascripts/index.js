@@ -65,6 +65,12 @@ $(function () {
     });
 
     $('#pinball').click(showQuestion);
+    $('#correct_return').click(function () {
+        switchContainer($welcome_container);
+    });
+    $('#wrong_return').click(function () {
+        switchContainer($welcome_container);
+    });
 });
 
 function showQuestion() {
