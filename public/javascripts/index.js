@@ -23,7 +23,7 @@ $(function () {
         socket.emit('add-channel', 'pinball');
 
         socket.on('fire', function (data) {
-            showQuestion(0);
+            showQuestion();
         })
     });
 
@@ -42,11 +42,13 @@ $(function () {
     });
 
     $showingContainer = $('#welcome');
+
+    $('#pinball').click(clickImage);
 });
 
 var $showingContainer;
 
-function showQuestion(index) {
+function showQuestion() {
     // 更新內容
 
     // switch
@@ -58,4 +60,8 @@ function switchContainer(id) {
         $showingContainer.hide();
         $('#' + id).show().animateCss('bounceIn');
     });
+}
+
+function clickImage() {
+    showQuestion();
 }
