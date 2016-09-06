@@ -42,25 +42,29 @@ $(function () {
     });
 
     $showingContainer = $('#welcome');
+    $question_Q = $('#question_Q');
     $question_text = $('#question_text');
-    $question_button_0 = $('#question_button_0');
-    $question_button_1 = $('#question_button_1');
+    $question_buttons = [
+        $('#question_button_0'), $('#question_button_1')
+    ];
 
     $('#pinball').click(showQuestion);
 });
 
 var $showingContainer;
+var $question_Q;
 var $question_text;
-var $question_button_0;
-var $question_button_1;
+var $question_buttons;
 
 function showQuestion() {
     // 更新內容
     var index = Math.floor(Math.random() * questions.length);
     var question = questions[index];
+    $question_Q.text('Q' + (index + 1) + "： ");
     $question_text.text(question["text"]);
-    $question_button_0.text(question["options"][0]);
-    $question_button_1.text(question["options"][1]);
+    for (var i = 0; i < 2; i++) {
+        $question_buttons[i].text(question["options"][i]);
+    }
 
     // switch
     switchContainer('question');
