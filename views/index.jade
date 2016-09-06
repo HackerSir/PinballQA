@@ -24,6 +24,16 @@ block content
                     span(id="question_text")
                 button(id="question_button_0" type="button" class="btn btn-secondary btn-lg btn-block")
                 button(id="question_button_1" type="button" class="btn btn-secondary btn-lg btn-block")
+    div(id='correct' class='container' style="display: none;")
+        div(class="card")
+            div(class="card-block")
+                h2(class="card-title text-success text-xs-center") 恭喜你答對了去領糖果吧～～
+                img(src='/images/correct.gif' class='img-rounded m-x-auto d-block' style='height: 50vh')
+    div(id='wrong' class='container' style="display: none;")
+        div(class="card")
+            div(class="card-block")
+                h2(class="card-title text-danger text-xs-center") 雖然錯了但還是去領個糖果吧XDDD
+                img(src='/images/wrong.gif' class='img-rounded m-x-auto d-block' style='height: 50vh')
 
 block javascript
     script(src="https://cdn.socket.io/socket.io-1.4.5.js")

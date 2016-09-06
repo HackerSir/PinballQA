@@ -70,6 +70,14 @@ function showQuestion() {
     switchContainer('question');
 }
 
+function showCorrect() {
+    
+}
+
+function showWrong() {
+    
+}
+
 function switchContainer(id) {
     $showingContainer.animateCss('bounceOut', function () {
         $showingContainer.hide();
