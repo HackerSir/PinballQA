@@ -42,14 +42,25 @@ $(function () {
     });
 
     $showingContainer = $('#welcome');
+    $question_text = $('#question_text');
+    $question_button_0 = $('#question_button_0');
+    $question_button_1 = $('#question_button_1');
 
     $('#pinball').click(showQuestion);
 });
 
 var $showingContainer;
+var $question_text;
+var $question_button_0;
+var $question_button_1;
 
 function showQuestion() {
     // 更新內容
+    var index = Math.floor(Math.random() * questions.length);
+    var question = questions[index];
+    $question_text.text(question["text"]);
+    $question_button_0.text(question["options"][0]);
+    $question_button_1.text(question["options"][1]);
 
     // switch
     switchContainer('question');
@@ -61,3 +72,22 @@ function switchContainer(id) {
         $('#' + id).show().animateCss('bounceIn');
     });
 }
+
+var questions = [
+    {
+        "text": "如果密碼被盜了該怎麼樣？",
+        "options": [
+            "報警",
+            "改密碼"
+        ],
+        "ans": 1
+    },
+    {
+        "text": "如果有網站問你說你的手機已經中毒了然後要求是否進行掃描？",
+        "options": [
+            "按下是",
+            "離開"
+        ],
+        "ans": 1
+    }
+];
