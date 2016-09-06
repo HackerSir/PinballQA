@@ -1,10 +1,27 @@
 extends layout
 
 block content
+    span(class="pull-right")
+        span(id="connect_status")
+            i(class="fa fa-spinner fa-spin" aria-hidden="true")
+            | &nbsp;連線中
     section(class='jumbotron text-xs-center')
         div(class='container')
             h1(class='jumbotron-heading')= title
             p(class="lead text-muted") 哈囉！歡迎挑戰
-    div(class='container')
+    div(id='welcome' class='container')
         img(src='/images/pinball.jpg' class='img-rounded m-x-auto d-block' style='height: 50vh')
         p(class='h4 text-xs-center') 請往下拉發球(物理)
+    div(id='question' class='container' hidden)
+        div(class="card")
+            div(class="card-header") 問題
+            div(class="card-block")
+                h4(class="card-title") Q： 如果密碼被盜了該怎麼樣？
+                button(type="button" class="btn btn-secondary btn-lg btn-block") 報警
+                button(type="button" class="btn btn-secondary btn-lg btn-block") 改密碼
+
+block javascript
+    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+    script(src="/javascripts/index.js")
+
+
