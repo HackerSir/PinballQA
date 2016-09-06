@@ -43,7 +43,7 @@ $(function () {
 
     $showingContainer = $('#welcome');
 
-    $('#pinball').click(clickImage);
+    $('#pinball').click(showQuestion);
 });
 
 var $showingContainer;
@@ -60,8 +60,4 @@ function switchContainer(id) {
         $showingContainer.hide();
         $('#' + id).show().animateCss('bounceIn');
     });
-}
-
-function clickImage() {
-    showQuestion();
 }
