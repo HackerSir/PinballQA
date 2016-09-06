@@ -1,5 +1,8 @@
 extends layout
 
+block css
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css")
+
 block content
     span(class="pull-right")
         span(id="connect_status")
@@ -12,7 +15,7 @@ block content
     div(id='welcome' class='container')
         img(src='/images/pinball.jpg' class='img-rounded m-x-auto d-block' style='height: 50vh')
         p(class='h4 text-xs-center') 請往下拉發球(物理)
-    div(id='question' class='container' hidden)
+    div(id='question' class='container' style="display: none;")
         div(class="card")
             div(class="card-header") 問題
             div(class="card-block")

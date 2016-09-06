@@ -1,3 +1,15 @@
+$.fn.extend({
+    animateCss: function (animationName, callback) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+            if (callback !== undefined) {
+                callback();
+            }
+        });
+    }
+});
+
 $(function () {
     var $connect_status = $('#connect_status');
 
@@ -11,7 +23,7 @@ $(function () {
         socket.emit('add-channel', 'pinball');
 
         socket.on('fire', function (data) {
-
+            showQuestion(0);
         })
     });
 
@@ -28,11 +40,22 @@ $(function () {
         $connect_status.addClass('text-danger');
         $connect_status.html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;連線中');
     });
+
+    $showingContainer = $('#welcome');
 });
+
+var $showingContainer;
 
 function showQuestion(index) {
     // 更新內容
 
     // switch
+    switchContainer('question');
+}
 
+function switchContainer(id) {
+    $showingContainer.animateCss('bounceOut', function () {
+        $showingContainer.hide();
+        $('#' + id).show().animateCss('bounceIn');
+    });
 }
