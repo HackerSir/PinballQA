@@ -12,3 +12,7 @@ exports.init = function (server) {
         });
     });
 };
+
+exports.fireQA = function () {
+    io.to('pinball').emit('fire', '');
+};
