@@ -146,7 +146,7 @@ var questions = [
     {
         "text": "請問要如何在windows環境下開啟命令提示字元",
         "options": [
-            "按下windwos鍵並輸入cmd",
+            "按下windows鍵並輸入cmd",
             "對螢幕大喊C8763"
         ],
         "ans": 0
